@@ -13,7 +13,7 @@ Install:
 pip install pytest pytest-html
 
 Run:
-pytest test_camping_rental.py -v --html=report.html --self-contained-html
+pytest test_py/test_camping_rental.py -v --html=report.html --self-contained-html
 """
 
 import pytest

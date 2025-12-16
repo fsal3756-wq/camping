@@ -6,7 +6,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import time
 
-BASE_URL = "http://localhost/camping_rental/login.php"
+BASE_URL = "http://localhost/camping-rental-apps/login.php"
 
 
 # ================================
