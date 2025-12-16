@@ -6,7 +6,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-BASE_URL = "http://localhost/camping_rental/login.php"
+BASE_URL = "http://localhost/camping-rental-apps/login.php"
 
 # ================================
 # FIXTURE
