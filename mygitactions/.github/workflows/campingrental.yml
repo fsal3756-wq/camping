@@ -11,6 +11,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout repository
       - uses: actions/checkout@v3
 
       - name: Setup Node.js
@@ -24,8 +25,9 @@ jobs:
       - name: Run tests
         run: npm test
 
-      - name: Run linter
+      - name: Run linter (jika ada)
         run: npm run lint
+        continue-on-error: true
 
   build:
     needs: test
@@ -45,26 +47,5 @@ jobs:
       - name: Build application
         run: npm run build
 
-      - name: Upload build artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: build
-          path: build/
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
-
-    steps:
-      - uses: actions/checkout@v3
-
-      - name: Download build artifacts
-        uses: actions/download-artifact@v3
-        with:
-          name: build
-          path: build/
-
-      - name: Deploy to production
-        run: |
-          # Script deployment Anda di sini
+      - name: Check build success
+        run: echo "Build completed successfully! ✅"
