@@ -9,12 +9,12 @@ BASE_URL = "http://localhost/camping-rental-apps/api"
 # FIXTURES & HELPERS
 # ============================================
 
-@pytest.fixture(scope="session", autouse=True)
-def setup_test_environment():
-    """Setup before all tests"""
-    print("\n🚀 Starting API tests...")
-    yield
-    print("\n✅ All tests completed!")
+# @pytest.fixture(scope="session", autouse=True)
+# def setup_test_environment():
+#     """Setup before all tests"""
+#     print("\n🚀 Starting API tests...")
+#     yield
+#     print("\n✅ All tests completed!")
 
 # ============================================
 # TEST: GET BOOKING

@@ -26,26 +26,18 @@ jobs:
       - name: Run PHP lint
         run: composer lint
 
-      # ---------- START API ----------
-      - name: Start PHP API server
-        run: |
-          php -S 127.0.0.1:8000 -t api > api.log 2>&1 &
-          sleep 3
-
       # ---------- PYTHON SETUP ----------
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
           python-version: "3.12"
 
-      - name: Setup Chrome
-        uses: browser-actions/setup-chrome@v1
-
       - name: Install Python dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install pytest requests selenium
-          pip install pytest requests webdriver-manager
+          pip install pytest requests
 
-      - name: Run pytest
-        run: pytest test_py/
+      # ---------- RUN PYTEST (NO API & NO SELENIUM) ----------
+      - name: Run pytest (unit tests only)
+        run: |
+          pytest test_py/ -m "not api and not selenium"

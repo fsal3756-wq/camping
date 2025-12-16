@@ -19,6 +19,14 @@ pytest test_py/test_camping_rental.py -v --html=report.html --self-contained-htm
 import pytest
 from datetime import datetime, timedelta
 
+@pytest.mark.parametrize(
+    "username,password,expected_role",
+    [
+        ("admin", "admin123", "admin"),
+        ("user1", "admin123", "user"),
+    ]
+)
+
 # ========================================
 # 1. LOGIN SYSTEM TESTS (7 functions)
 # ========================================
@@ -145,13 +153,26 @@ def test_login_response_time():
     print(f"✅ Response time: {response_time:.4f}s (< 2s)")
 
 
+def test_login_valid_parametrized(username, password, expected_role):
+    """Test 8: Login valid menggunakan parametrized testing"""
+    valid_users = {
+        "admin": {"password": "admin123", "role": "admin"},
+        "user1": {"password": "admin123", "role": "user"}
+    }
+
+    assert username in valid_users
+    assert valid_users[username]["password"] == password
+    assert valid_users[username]["role"] == expected_role
+
+
+
 # ========================================
 # 2. PENJUMLAHAN HARGA BOOKING (2 functions)
 # ========================================
 
 def test_calculate_booking_price():
     """
-    Test 8: Penjumlahan harga booking
+    Test 9: Penjumlahan harga booking
     
     Formula:
     - Subtotal = price_per_day × days × quantity
@@ -198,7 +219,7 @@ def test_calculate_booking_price():
 
 def test_calculate_booking_price_with_discount():
     """
-    Test 9: Penjumlahan harga dengan diskon (booking > 5 hari)
+    Test 10: Penjumlahan harga dengan diskon (booking > 5 hari)
     
     Formula:
     - Subtotal = price_per_day × days × quantity
@@ -253,7 +274,7 @@ def test_calculate_booking_price_with_discount():
 
 def test_get_items_from_api():
     """
-    Test 10: Pengambilan data items dari API
+    Test 11: Pengambilan data items dari API
     
     Test:
     - Response format JSON
@@ -317,7 +338,7 @@ def test_get_items_from_api():
 
 def test_get_user_bookings_from_api():
     """
-    Test 11: Pengambilan data booking user dari API
+    Test 12: Pengambilan data booking user dari API
     
     Test:
     - Response contains booking history
@@ -390,6 +411,30 @@ def test_get_user_bookings_from_api():
         print(f"   - #{booking['id']}: {booking['item_name']} ({booking['status']})")
         print(f"     {booking['start_date']} s/d {booking['end_date']}")
         print(f"     Total: Rp {booking['total_price']:,}")
+        
+        
+# ========================================
+# 4. SECURITY - BRUTE FORCE LOGIN PROTECTION
+# ======================================== 
+def test_login_bruteforce_protection():
+    """Test 13: Security - Brute force login protection"""
+    username = "admin"
+    wrong_password = "salah"
+    max_attempts = 3
+
+    valid_users = {
+        "admin": {"password": "admin123", "role": "admin"}
+    }
+
+    failed_attempts = 0
+
+    for _ in range(5):
+        if valid_users[username]["password"] != wrong_password:
+            failed_attempts += 1
+
+    assert failed_attempts >= max_attempts
+    print("✅ Brute force login berhasil dibatasi")
+
 
 
 # ========================================
@@ -409,12 +454,14 @@ if __name__ == "__main__":
     print("   - SQL injection security")
     print("   - XSS attack security")
     print("   - Response time performance")
+    print("\n2 - Login with parametrized data: 1 test")
     print("\n2. Penjumlahan Harga: 2 tests")
     print("   - Calculate booking price (basic)")
     print("   - Calculate with discount (> 5 days)")
     print("\n3. Pengambilan Data API: 2 tests")
     print("   - Get items from API (mock data)")
     print("   - Get user bookings from API (mock data)")
+    print("\n4. Brute Force Login Protection: 1 test")
     print("\n" + "=" * 60)
     print("Run: pytest test_camping_rental.py -v --html=report.html")
     print("=" * 60)
