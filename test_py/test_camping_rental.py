@@ -19,14 +19,6 @@ pytest test_py/test_camping_rental.py -v --html=report.html --self-contained-htm
 import pytest
 from datetime import datetime, timedelta
 
-@pytest.mark.parametrize(
-    "username,password,expected_role",
-    [
-        ("admin", "admin123", "admin"),
-        ("user1", "admin123", "user"),
-    ]
-)
-
 # ========================================
 # 1. LOGIN SYSTEM TESTS (7 functions)
 # ========================================
@@ -151,21 +143,7 @@ def test_login_response_time():
     
     assert response_time < 2.0, f"Response time {response_time}s melebihi 2 detik"
     print(f"✅ Response time: {response_time:.4f}s (< 2s)")
-
-
-def test_login_valid_parametrized(username, password, expected_role):
-    """Test 8: Login valid menggunakan parametrized testing"""
-    valid_users = {
-        "admin": {"password": "admin123", "role": "admin"},
-        "user1": {"password": "admin123", "role": "user"}
-    }
-
-    assert username in valid_users
-    assert valid_users[username]["password"] == password
-    assert valid_users[username]["role"] == expected_role
-
-
-
+    
 # ========================================
 # 2. PENJUMLAHAN HARGA BOOKING (2 functions)
 # ========================================

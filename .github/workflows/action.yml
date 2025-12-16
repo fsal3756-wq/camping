@@ -40,4 +40,4 @@ jobs:
       # ---------- RUN PYTEST (NO API & NO SELENIUM) ----------
       - name: Run pytest (unit tests only)
         run: |
-          pytest test_py/ -m "not api and not selenium"
+          pytest test_py/
