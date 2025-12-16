@@ -1,6 +1,6 @@
 import requests
 
-API_URL = "http://localhost/camping_rental/api/items.php"
+API_URL = "http://localhost/camping-rental-apps/api/items.php"
 
 def test_get_items():
     response = requests.get(API_URL)

@@ -7,7 +7,7 @@
     RewriteEngine On
     
     # Set base directory
-    RewriteBase /camping_rental/
+    RewriteBase /camping-rental-apps/
     
     # Redirect to HTTPS (uncomment for production)
     # RewriteCond %{HTTPS} off
@@ -31,9 +31,9 @@
     Options -Indexes
     
     # Custom error pages
-    ErrorDocument 404 /camping_rental/404.php
-    ErrorDocument 403 /camping_rental/403.php
-    ErrorDocument 500 /camping_rental/500.php
+    ErrorDocument 404 /camping-rental-apps/404.php
+    ErrorDocument 403 /camping-rental-apps/403.php
+    ErrorDocument 500 /camping-rental-apps/500.php
 </IfModule>
 
 # ============================================
@@ -95,7 +95,7 @@
 <FilesMatch "\.(php|php3|php4|php5|phtml)$">
     <IfModule mod_rewrite.c>
         RewriteEngine On
-        RewriteCond %{REQUEST_URI} ^/camping_rental/(config|lib|models|controllers)/
+        RewriteCond %{REQUEST_URI} ^/camping-rental-apps/(config|lib|models|controllers)/
         RewriteRule .* - [F,L]
     </IfModule>
 </FilesMatch>

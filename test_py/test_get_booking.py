@@ -1,7 +1,7 @@
 import requests
 import pytest
 
-BASE_URL = "http://localhost/camping_rental/api"
+BASE_URL = "http://localhost/camping-rental-apps/api"
 
 def test_get_booking_success():
     """Test jika user_id valid, API harus mengembalikan data booking"""

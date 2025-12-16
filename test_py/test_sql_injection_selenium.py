@@ -21,7 +21,7 @@ from selenium.common.exceptions import TimeoutException, NoSuchElementException
 from webdriver_manager.chrome import ChromeDriverManager
 
 # Configuration
-BASE_URL = "http://localhost/camping_rental"
+BASE_URL = "http://localhost/camping-rental-apps"
 LOGIN_URL = f"{BASE_URL}/login.php"
 
 
