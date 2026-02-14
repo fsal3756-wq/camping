@@ -28,22 +28,22 @@ if ($flash):
                     Platform rental peralatan camping terpercaya untuk petualangan Anda di Cirebon dan sekitarnya.
                 </p>
                 <div class="d-flex gap-3">
-                    <a href="https://www.facebook.com/syahrulumaediii" class="text-white-50 hover-primary"
+                    <a href="https://www.facebook.com/a" class="text-white-50 hover-primary"
                         title="Facebook" target="_blank" rel="noopener noreferrer">
                         <i class="bi bi-facebook fs-5"></i>
                     </a>
 
-                    <a href="https://www.instagram.com/syahrulumaediii" class="text-white-50 hover-primary"
+                    <a href="https://www.instagram.com/aryaf26_" class="text-white-50 hover-primary"
                         title="Instagram" target="_blank" rel="noopener noreferrer">
                         <i class="bi bi-instagram fs-5"></i>
                     </a>
 
-                    <a href="https://twitter.com/syahrulumaediii" class="text-white-50 hover-primary" title="Twitter"
+                    <a href="https://twitter.com/a" class="text-white-50 hover-primary" title="Twitter"
                         target="_blank" rel="noopener noreferrer">
                         <i class="bi bi-twitter fs-5"></i>
                     </a>
 
-                    <a href="https://wa.me/6281223807456" class="text-white-50 hover-primary" title="WhatsApp"
+                    <a href="https://wa.me/6285889660387" class="text-white-50 hover-primary" title="WhatsApp"
                         target="_blank" rel="noopener noreferrer">
                         <i class="bi bi-whatsapp fs-5"></i>
                     </a>
@@ -112,13 +112,13 @@ if ($flash):
                 <ul class="list-unstyled">
                     <li class="mb-3">
                         <i class="bi bi-geo-alt-fill text-primary me-2"></i>
-                        <span class="text-white-50">Jl. Sunan Kalijaga No. 123<br>
-                            <span class="ms-4">Harjamukti, Cirebon 45145</span></span>
+                        <span class="text-white-50">Jl. Sukasari No. 02<br>
+                            <span class="ms-4">Mandirancan, Kuningan 45558</span></span>
                     </li>
                     <li class="mb-3">
                         <i class="bi bi-telephone-fill text-primary me-2"></i>
                         <a href="tel:+6281234567890" class="text-white-50 text-decoration-none hover-primary">
-                            +62 812-2380-7456
+                            +62 858-8966-0387
                         </a>
                     </li>
                     <li class="mb-3">
@@ -150,7 +150,7 @@ if ($flash):
                 &copy; <?= date('Y') ?> <strong><?= APP_NAME ?></strong>. All rights reserved.
             </p>
             <p class="mb-0">
-                Created by <strong>Syahrul Umaedi</strong>
+                Created by <strong>Suthan Arya Fauzan</strong>
                 <!-- Optional -->
                 <!-- &mdash; Made with <i
                     class="bi bi-heart-fill text-danger"></i> in Cirebon, Indonesia -->
@@ -166,7 +166,7 @@ if ($flash):
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="mapModalLabel">
-                    <i class="bi bi-geo-alt-fill text-primary me-2"></i>Lokasi Kami di Cirebon
+                    <i class="bi bi-geo-alt-fill text-primary me-2"></i>Lokasi Kami di Kuningan
                 </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
@@ -182,7 +182,7 @@ if ($flash):
                     <div class="row g-2">
                         <div class="col-md-6">
                             <p class="mb-1 small"><i class="bi bi-geo-alt me-2"></i><strong>Alamat:</strong></p>
-                            <p class="mb-0 text-muted small">Jl. Sunan Kalijaga No. 123, Harjamukti, Cirebon 45145</p>
+                            <p class="mb-0 text-muted small">Jl. Sukasari No. 02, Mandirancan, Kuningan 45558</p>
                         </div>
                         <div class="col-md-6 text-md-end">
                             <a href="https://www.google.com/maps/@-6.7676937,108.5416954,20.88z?entry=ttu&g_ep=EgoyMDI1MTEyMy4xIKXMDSoASAFQAw%3D%3D"

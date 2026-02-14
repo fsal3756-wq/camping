@@ -25,6 +25,12 @@
       "active": "payments"
     },
     {
+      "title": "Manual Booking",
+      "icon": "bi-calendar-check",
+      "url": "/admin/manual_booking.php",
+      "active": "manual_booking"
+    },
+    {
       "title": "Users",
       "icon": "bi-people",
       "url": "/admin/users.php",

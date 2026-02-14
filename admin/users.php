@@ -36,12 +36,12 @@ include __DIR__ . '/../views/header.php';
                         <table class="table table-hover">
                             <thead>
                                 <tr>
-                                    <!-- <th>ID</th> -->
                                     <th>Username</th>
                                     <th>Full Name</th>
                                     <th>Email</th>
                                     <th>Phone</th>
                                     <th>Role</th>
+                                    <th>KTP</th>
                                     <th>Status</th>
                                     <th>Joined</th>
                                     <th>Actions</th>
@@ -50,7 +50,6 @@ include __DIR__ . '/../views/header.php';
                             <tbody>
                                 <?php foreach ($users as $user): ?>
                                     <tr>
-                                        <!-- <td><?= $user['id'] ?></td> -->
                                         <td><strong><?= htmlspecialchars($user['username']) ?></strong></td>
                                         <td><?= htmlspecialchars($user['full_name']) ?></td>
                                         <td><?= htmlspecialchars($user['email']) ?></td>
@@ -61,8 +60,17 @@ include __DIR__ . '/../views/header.php';
                                             </span>
                                         </td>
                                         <td>
-                                            <span
-                                                class="badge bg-<?= $user['status'] === 'active' ? 'success' : 'secondary' ?>">
+    <?php if (!empty($user['ktp_image'])): ?>
+        <button class="btn btn-sm btn-info" 
+                onclick="viewKTP('<?= htmlspecialchars($user['username']) ?>', '<?= APP_URL ?>/<?= htmlspecialchars($user['ktp_image'] ?? '') ?>')">
+            <i class="bi bi-eye"></i> View KTP
+        </button>
+    <?php else: ?>
+        <span class="text-muted">No KTP</span>
+    <?php endif; ?>
+</td>
+                                        <td>
+                                            <span class="badge bg-<?= $user['status'] === 'active' ? 'success' : 'secondary' ?>">
                                                 <?= ucfirst($user['status']) ?>
                                             </span>
                                         </td>
@@ -196,6 +204,28 @@ include __DIR__ . '/../views/header.php';
         </div>
     </div>
 </div>
+
+<!-- KTP View Modal -->
+<div class="modal fade" id="ktpModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="ktpModalTitle">View KTP</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body text-center">
+                <img id="ktpImage" src="" alt="KTP" class="img-fluid rounded border">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <a id="ktpDownload" href="" download class="btn btn-primary">
+                    <i class="bi bi-download me-2"></i>Download
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
     function editUser(user) {
         document.getElementById('edit_user_id').value = user.id;
@@ -231,5 +261,14 @@ include __DIR__ . '/../views/header.php';
             form.submit();
         }
     }
+
+    function viewKTP(username, imageUrl) {
+        document.getElementById('ktpModalTitle').textContent = 'KTP - ' + username;
+        document.getElementById('ktpImage').src = imageUrl;
+        document.getElementById('ktpDownload').href = imageUrl;
+        
+        new bootstrap.Modal(document.getElementById('ktpModal')).show();
+    }
 </script>
+
 <?php include __DIR__ . '/../views/footer.php'; ?>

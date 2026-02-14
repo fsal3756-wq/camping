@@ -11,12 +11,12 @@ if (file_exists(__DIR__ . '/../.env')) {
 
 // App Configuration
 define('APP_NAME', getenv('APP_NAME') ?: 'Camping Rental');
-define('APP_URL', getenv('APP_URL') ?: 'http://localhost/camping_rental');
-define('APP_ENV', getenv('APP_ENV') ?: 'production');
+define('APP_URL', getenv('APP_URL') ?: 'http://localhost/camping-rental-apps');
+define('APP_ENV', getenv('APP_ENV') ?: 'development');
 
 // Database Configuration
 define('DB_HOST', getenv('DB_HOST') ?: 'localhost');
-define('DB_NAME', getenv('DB_NAME') ?: 'db_camping_rental');
+define('DB_NAME', getenv('DB_NAME') ?: 'camping');
 define('DB_USER', getenv('DB_USER') ?: 'root');
 define('DB_PASS', getenv('DB_PASS') ?: '');
 
@@ -31,7 +31,7 @@ define('ALLOWED_EXTENSIONS', ['jpg', 'jpeg', 'png', 'webp']);
 // Timezone
 date_default_timezone_set('Asia/Jakarta');
 
-// Error Reporting
+// // Error Reporting
 if (APP_ENV === 'development') {
     error_reporting(E_ALL);
     ini_set('display_errors', 1);

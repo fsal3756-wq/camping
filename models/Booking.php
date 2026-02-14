@@ -210,6 +210,24 @@ class Booking
         }
     }
 
+    // ✨ TAMBAHAN METHOD BARU: Update Payment Status
+    public function updatePaymentStatus($id, $paymentStatus)
+    {
+        try {
+            $updated = $this->db->update(
+                'bookings',
+                ['payment_status' => $paymentStatus],
+                'id = :id',
+                ['id' => $id]
+            );
+
+            return $updated;
+        } catch (Exception $e) {
+            error_log("Payment status update error (ID: $id): " . $e->getMessage());
+            return false;
+        }
+    }
+
     public function cancel($id, $userId = null)
     {
         $itemModel = new Item();
@@ -250,7 +268,8 @@ class Booking
         $sql = "
             SELECT b.*, 
                 i.name as item_name, i.category, i.image_url,
-                p.status as payment_status
+                p.status as payment_status,
+                (SELECT COUNT(*) FROM booking_items bi WHERE bi.booking_id = b.id) as items_count
             FROM bookings b
             JOIN items i ON b.item_id = i.id
             LEFT JOIN payments p ON b.id = p.booking_id

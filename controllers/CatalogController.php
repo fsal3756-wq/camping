@@ -37,7 +37,7 @@ class CatalogController
 
         if (!$item) {
             setFlashMessage('danger', 'Item not found');
-            redirect('/camping_rental/index.php');
+            redirect('/camping-rental-apps/index.php');
         }
 
         return $item;

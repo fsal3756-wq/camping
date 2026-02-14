@@ -8,7 +8,7 @@ class Database
     {
         try {
             $host = getenv('DB_HOST') ?: 'localhost';
-            $dbname = getenv('DB_NAME') ?: 'db_camping_rental';
+            $dbname = getenv('DB_NAME') ?: 'camping';
             $username = getenv('DB_USER') ?: 'root';
             $password = getenv('DB_PASS') ?: '';
             $charset = getenv('DB_CHARSET') ?: 'utf8mb4';

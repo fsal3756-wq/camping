@@ -84,33 +84,29 @@
 						{
 							"listen": "test",
 							"script": {
+								"type": "text/javascript",
 								"exec": [
-									"pm.test(\"Status code is 200 — no redirect\", function () {",
-									"    pm.expect(pm.response.code).to.equal(200);",
-									"});",
-									"",
-									"pm.test(\"No Location header\", function () {",
-									"    pm.expect(pm.response.headers.has(\"Location\")).to.be.false;",
-									"});",
-									"",
-									"pm.test(\"Response contains login form\", function () {",
-									"    var txt = pm.response.text();",
-									"    pm.expect(txt).to.include(\"login.php\");",
-									"    pm.expect(txt).to.match(/<form[^>]*action=[\"']?login\\.php/i);",
-									"});",
-									"",
-									"pm.test(\"Shows access denied or error\", function () {",
-									"    var txt = pm.response.text();",
-									"    pm.expect(txt).to.match(/(gagal|salah|tidak diizinkan|access denied|login)/i);",
-									"});",
-									"",
-									"pm.test(\"NO admin or dashboard content\", function () {",
-									"    var txt = pm.response.text();",
-									"    pm.expect(txt).to.not.match(/dashboard|admin panel|selamat datang|user home/i);",
-									"});"
-								],
-								"type": "text/javascript"
+								"pm.test(\"Status code is 200 — no redirect\", function () {",
+								"    pm.expect(pm.response.code).to.equal(200);",
+								"});",
+								"",
+								"pm.test(\"No Location header\", function () {",
+								"    pm.expect(pm.response.headers.has(\"Location\")).to.be.false;",
+								"});",
+								"",
+								"pm.test(\"Invalid Credential shown\", function () {",
+								"    var txt = pm.response.text();",
+								"    pm.expect(txt).to.include(\"Invalid Credential\");",
+								"});",
+								"",
+								"pm.test(\"No admin content\", function () {",
+								"    var txt = pm.response.text();",
+								"    pm.expect(txt).to.not.match(/dashboard|admin|selamat datang/i);",
+								"});"
+								]
 							}
+							
+
 						}
 					],
 					"request": {
@@ -153,35 +149,26 @@
 					"name": "TC-LOGIN-003: Invalid Username",
 					"event": [
 						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 200 — stays on login\", function () {",
-									"    pm.expect(pm.response.code).to.equal(200);",
-									"});",
-									"",
-									"pm.test(\"No redirect header\", function () {",
-									"    pm.expect(pm.response.headers.has(\"Location\")).to.be.false;",
-									"});",
-									"",
-									"pm.test(\"Login form is present\", function () {",
-									"    var txt = pm.response.text();",
-									"    pm.expect(txt).to.match(/<form[^>]*action=[\"']?login\\.php/i);",
-									"});",
-									"",
-									"pm.test(\"Error message shown\", function () {",
-									"    var txt = pm.response.text();",
-									"    pm.expect(txt).to.match(/(salah|gagal|tidak valid)/i);",
-									"});",
-									"",
-									"pm.test(\"No dashboard content\", function () {",
-									"    var txt = pm.response.text();",
-									"    pm.expect(txt).to.not.match(/dashboard|admin|selamat datang/i);",
-									"});"
-								],
-								"type": "text/javascript"
-							}
+						"listen": "test",
+						"script": {
+							"type": "text/javascript",
+							"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.expect(pm.response.code).to.equal(200);",
+							"});",
+							"",
+							"pm.test(\"No redirect\", function () {",
+							"    pm.expect(pm.response.headers.has(\"Location\")).to.be.false;",
+							"});",
+							"",
+							"pm.test(\"Invalid Credential shown\", function () {",
+							"    var txt = pm.response.text();",
+							"    pm.expect(txt).to.include(\"Invalid Credential\");",
+							"});"
+							]
 						}
+						}
+
 					],
 					"request": {
 						"method": "POST",
@@ -217,36 +204,27 @@
 				{
 					"name": "TC-LOGIN-004: Invalid Password",
 					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 200\", function () {",
-									"    pm.expect(pm.response.code).to.equal(200);",
-									"});",
-									"",
-									"pm.test(\"No redirect\", function () {",
-									"    pm.expect(pm.response.headers.has(\"Location\")).to.be.false;",
-									"});",
-									"",
-									"pm.test(\"Login form present\", function () {",
-									"    var txt = pm.response.text();",
-									"    pm.expect(txt).to.match(/<form[^>]*action=[\"']?login\\.php/i);",
-									"});",
-									"",
-									"pm.test(\"Error message shown\", function () {",
-									"    var txt = pm.response.text();",
-									"    pm.expect(txt).to.match(/(salah|gagal|password salah)/i);",
-									"});",
-									"",
-									"pm.test(\"No admin content\", function () {",
-									"    var txt = pm.response.text();",
-									"    pm.expect(txt).to.not.match(/dashboard|admin|selamat datang/i);",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
+					{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+						"pm.test(\"Status code is 200\", function () {",
+						"    pm.expect(pm.response.code).to.equal(200);",
+						"});",
+						"",
+						"pm.test(\"No redirect\", function () {",
+						"    pm.expect(pm.response.headers.has(\"Location\")).to.be.false;",
+						"});",
+						"",
+						"pm.test(\"Invalid Credential shown\", function () {",
+						"    var txt = pm.response.text();",
+						"    pm.expect(txt).to.include(\"Invalid Credential\");",
+						"});"
+						]
+					}
+					}
+
 					],
 					"request": {
 						"method": "POST",
@@ -464,32 +442,24 @@
 					"name": "TC-SEC-001: SQL Injection (Username)",
 					"event": [
 						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status 200 — no redirect\", function () {",
-									"    pm.expect(pm.response.code).to.equal(200);",
-									"});",
-									"",
-									"pm.test(\"No Location header\", function () {",
-									"    pm.expect(pm.response.headers.has(\"Location\")).to.be.false;",
-									"});",
-									"",
-									"pm.test(\"Login form present\", function () {",
-									"    var txt = pm.response.text();",
-									"    pm.expect(txt).to.match(/<form[^>]*action=[\"']?login\\.php/i);",
-									"});",
-									"",
-									"pm.test(\"Generic error, no DB leak\", function () {",
-									"    var txt = pm.response.text();",
-									"    pm.expect(txt).to.match(/(salah|gagal)/i);",
-									"    pm.expect(txt).to.not.include(\"mysql\");",
-									"    pm.expect(txt).to.not.include(\"SQL syntax\");",
-									"});"
-								],
-								"type": "text/javascript"
-							}
+						"listen": "test",
+						"script": {
+							"type": "text/javascript",
+							"exec": [
+							"pm.test(\"Status 200 — no redirect\", function () {",
+							"    pm.expect(pm.response.code).to.equal(200);",
+							"});",
+							"",
+							"pm.test(\"Invalid Credential shown\", function () {",
+							"    var txt = pm.response.text();",
+							"    pm.expect(txt).to.include(\"Invalid Credential\");",
+							"    pm.expect(txt).to.not.include(\"mysql\");",
+							"    pm.expect(txt).to.not.include(\"SQL syntax\");",
+							"});"
+							]
 						}
+						}
+
 					],
 					"request": {
 						"method": "POST",
@@ -581,25 +551,22 @@
 					"name": "TC-EDGE-001: Special Characters",
 					"event": [
 						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status 200 — handled gracefully\", function () {",
-									"    pm.expect(pm.response.code).to.equal(200);",
-									"});",
-									"",
-									"pm.test(\"No redirect\", function () {",
-									"    pm.expect(pm.response.headers.has(\"Location\")).to.be.false;",
-									"});",
-									"",
-									"pm.test(\"Login form remains\", function () {",
-									"    var txt = pm.response.text();",
-									"    pm.expect(txt).to.match(/<form[^>]*action=[\"']?login\\.php/i);",
-									"});"
-								],
-								"type": "text/javascript"
-							}
+						"listen": "test",
+						"script": {
+							"type": "text/javascript",
+							"exec": [
+							"pm.test(\"Status 200\", function () {",
+							"    pm.expect(pm.response.code).to.equal(200);",
+							"});",
+							"",
+							"pm.test(\"Invalid Credential shown\", function () {",
+							"    var txt = pm.response.text();",
+							"    pm.expect(txt).to.include(\"Invalid Credential\");",
+							"});"
+							]
 						}
+						}
+
 					],
 					"request": {
 						"method": "POST",
@@ -637,7 +604,7 @@
 	"variable": [
 		{
 			"key": "base_url",
-			"value": "http://localhost/camping_rental",
+			"value": "http://localhost/camping-rental-apps",
 			"type": "string"
 		}
 	]

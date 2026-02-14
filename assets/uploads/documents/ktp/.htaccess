@@ -1,0 +1,54 @@
+# ============================================
+# KTP FOLDER SECURITY - .htaccess
+# ============================================
+# Location: assets/uploads/documents/ktp/.htaccess
+# Purpose: Block ALL direct access to KTP files
+# ============================================
+
+# Prevent directory listing
+Options -Indexes
+
+# Deny all direct access by default
+Order Deny,Allow
+Deny from all
+
+# Block access to all file types
+# Files can ONLY be accessed via view_ktp.php
+<FilesMatch ".*">
+    Order Deny,Allow
+    Deny from all
+</FilesMatch>
+
+# Prevent access to hidden files (.htaccess, .env, etc)
+<FilesMatch "^\.">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
+
+# Disable PHP execution (prevent malicious uploads)
+<FilesMatch "\.(php|php3|php4|php5|phtml|pl|py|jsp|asp|htm|shtml|sh|cgi)$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
+
+# Security headers
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "DENY"
+    Header set Cache-Control "private, no-cache, no-store, must-revalidate"
+    Header set Pragma "no-cache"
+    Header set Expires "0"
+</IfModule>
+
+# ============================================
+# IMPORTANT NOTES:
+# ============================================
+# 1. This file blocks ALL direct browser access
+# 2. KTP images can ONLY be viewed via view_ktp.php
+# 3. Even admins cannot access files directly via URL
+# 4. This is ADDITIONAL security on top of root .htaccess
+# 5. Copy this same file to:
+#    - assets/uploads/documents/ktp/.htaccess
+#    - assets/uploads/documents/sim/.htaccess
+#    - assets/uploads/documents/receipts/.htaccess
+# ============================================
